@@ -23,14 +23,12 @@
             "id": "4f9c67c55529877b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "bla.md",
-                "mode": "source",
-                "source": false
+                "file": "BUS 713 Assessment 1.pdf"
               },
-              "icon": "lucide-file",
-              "title": "bla"
+              "icon": "lucide-file-text",
+              "title": "BUS 713 Assessment 1"
             }
           }
         ],
@@ -209,9 +207,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "50449b6b258121f7",
+  "active": "4f9c67c55529877b",
   "lastOpenFiles": [
-    "BUS 713 Assessment 1.pdf",
-    "bla.md"
+    "bla.md",
+    "BUS 713 Assessment 1.pdf"
   ]
 }

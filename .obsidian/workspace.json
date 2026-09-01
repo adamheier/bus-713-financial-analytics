@@ -25,7 +25,7 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "BUS 713 Assessment 1.pdf"
+                "file": "assigments/task_1/BUS 713 Assessment 1.pdf"
               },
               "icon": "lucide-file-text",
               "title": "BUS 713 Assessment 1"
@@ -209,7 +209,10 @@
   },
   "active": "1fb117d45e3d9bf1",
   "lastOpenFiles": [
-    "BUS 713 Assessment 1.pdf",
-    "bla.md"
+    "assigments/task_1",
+    "assigments",
+    "modules",
+    "bla.md",
+    "assigments/task_1/BUS 713 Assessment 1.pdf"
   ]
 }

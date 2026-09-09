@@ -10,6 +10,7 @@ msft_start
 
 # pull the ending value
 msft_end   <- microsoft$adjusted[nrow(microsoft)]
+msft_end <- tail(na.omit(microsoft$adjusted), 1) #Letzten vollständigen Wert statt [nrow(microsoft)] nehmen
 msft_end
 
 # pull the start date

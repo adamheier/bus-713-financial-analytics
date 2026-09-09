@@ -1,0 +1,232 @@
+Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo 
+-- Attaching core tidyquant packages ----------------------- tidyquant 1.0.12 --
+v PerformanceAnalytics 2.1.0      v quantmod             0.4.29
+v TTR                  0.24.4     v xts                  0.14.2
+-- Conflicts ------------------------------------------ tidyquant_conflicts() --
+x zoo::as.Date()                 masks base::as.Date()
+x zoo::as.Date.numeric()         masks base::as.Date.numeric()
+x PerformanceAnalytics::legend() masks graphics::legend()
+x quantmod::summary()            masks base::summary()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.2.1     v readr     2.2.0
+v forcats   1.0.1     v stringr   1.6.0
+v ggplot2   4.0.3     v tibble    3.3.1
+v lubridate 1.9.5     v tidyr     1.3.2
+v purrr     1.2.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::first()  masks xts::first()
+x dplyr::lag()    masks stats::lag()
+x dplyr::last()   masks xts::last()
+i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+# A tibble: 15,849 x 9
+   symbol date        open  high   low close     volume adjusted asset        
+   <chr>  <date>     <dbl> <dbl> <dbl> <dbl>      <dbl>    <dbl> <fct>        
+ 1 NVDA   2005-01-03 0.203 0.206 0.196 0.197 1066716000    0.180 NVIDIA (NVDA)
+ 2 NVDA   2005-01-04 0.198 0.198 0.184 0.187  790224000    0.171 NVIDIA (NVDA)
+ 3 NVDA   2005-01-05 0.185 0.191 0.184 0.189  724812000    0.173 NVIDIA (NVDA)
+ 4 NVDA   2005-01-06 0.192 0.195 0.186 0.187  563568000    0.171 NVIDIA (NVDA)
+ 5 NVDA   2005-01-07 0.188 0.189 0.181 0.184  763092000    0.168 NVIDIA (NVDA)
+ 6 NVDA   2005-01-10 0.184 0.186 0.183 0.184  579552000    0.168 NVIDIA (NVDA)
+ 7 NVDA   2005-01-11 0.182 0.183 0.176 0.178 1093380000    0.163 NVIDIA (NVDA)
+ 8 NVDA   2005-01-12 0.180 0.181 0.172 0.177 1057800000    0.162 NVIDIA (NVDA)
+ 9 NVDA   2005-01-13 0.177 0.183 0.173 0.179  898764000    0.164 NVIDIA (NVDA)
+10 NVDA   2005-01-14 0.182 0.182 0.177 0.179  573912000    0.164 NVIDIA (NVDA)
+# i 15,839 more rows
+# A tibble: 3 x 6
+  asset            n_days first_date last_date  first_px last_px
+  <fct>             <int> <date>     <date>        <dbl>   <dbl>
+1 NVIDIA (NVDA)      5283 2005-01-03 2025-12-31    0.180   186. 
+2 Intel (INTC)       5283 2005-01-03 2025-12-31   13.3      36.9
+3 Nasdaq Composite   5283 2005-01-03 2025-12-31 2152.    23242. 
+Warning message:
+x = 'CPIAUCSL', get = 'economic.data': Error in getSymbols.FRED(Symbols = "CPIAUCSL", env = <environment>, verbose = FALSE, : Unable to import "CPIAUCSL".
+Stream error in the HTTP/2 framing layer [fred.stlouisfed.org]:
+HTTP/2 stream 1 was not closed cleanly: INTERNAL_ERROR (err 2)
+getSymbols.FRED: requests without an API key are not guaranteed to succeed.
+Register for a free key at https://fredaccount.stlouisfed.org/apikeys and set it with
+setDefaults(getSymbols.FRED, api.key = "your key").
+ 
+# A tibble: 251 x 3
+   symbol   date       price
+   <chr>    <date>     <dbl>
+ 1 CPIAUCSL 2005-01-01  192.
+ 2 CPIAUCSL 2005-02-01  192.
+ 3 CPIAUCSL 2005-03-01  193.
+ 4 CPIAUCSL 2005-04-01  194.
+ 5 CPIAUCSL 2005-05-01  194.
+ 6 CPIAUCSL 2005-06-01  194.
+ 7 CPIAUCSL 2005-07-01  195.
+ 8 CPIAUCSL 2005-08-01  196.
+ 9 CPIAUCSL 2005-09-01  199.
+10 CPIAUCSL 2005-10-01  199.
+# i 241 more rows
+# A tibble: 756 x 3
+   asset         date       monthly.returns
+   <fct>         <date>               <dbl>
+ 1 NVIDIA (NVDA) 2005-01-31         -0.0284
+ 2 NVIDIA (NVDA) 2005-02-28          0.235 
+ 3 NVIDIA (NVDA) 2005-03-31         -0.199 
+ 4 NVIDIA (NVDA) 2005-04-29         -0.0801
+ 5 NVIDIA (NVDA) 2005-05-31          0.212 
+ 6 NVIDIA (NVDA) 2005-06-30         -0.0141
+ 7 NVIDIA (NVDA) 2005-07-29          0.0126
+ 8 NVIDIA (NVDA) 2005-08-31          0.126 
+ 9 NVIDIA (NVDA) 2005-09-30          0.111 
+10 NVIDIA (NVDA) 2005-10-31         -0.0215
+# i 746 more rows
+# A tibble: 15,849 x 3
+   asset         date       daily.returns
+   <fct>         <date>             <dbl>
+ 1 NVIDIA (NVDA) 2005-01-03       0      
+ 2 NVIDIA (NVDA) 2005-01-04      -0.0471 
+ 3 NVIDIA (NVDA) 2005-01-05       0.00935
+ 4 NVIDIA (NVDA) 2005-01-06      -0.00970
+ 5 NVIDIA (NVDA) 2005-01-07      -0.0191 
+ 6 NVIDIA (NVDA) 2005-01-10       0.00227
+ 7 NVIDIA (NVDA) 2005-01-11      -0.0308 
+ 8 NVIDIA (NVDA) 2005-01-12      -0.00841
+ 9 NVIDIA (NVDA) 2005-01-13       0.0104 
+10 NVIDIA (NVDA) 2005-01-14       0.00326
+# i 15,839 more rows
+# A tibble: 3 x 9
+  asset       n_months mean_return_m volatility_m mean_return_ann volatility_ann
+  <fct>          <int>         <dbl>        <dbl>           <dbl>          <dbl>
+1 NVIDIA (NV~      252       0.0275        0.134           0.331           0.463
+2 Intel (INT~      252       0.00404       0.0882          0.0485          0.306
+3 Nasdaq Com~      252       0.00944       0.0514          0.113           0.178
+# i 3 more variables: worst_month <dbl>, best_month <dbl>, share_positive <dbl>
+# A tibble: 3 x 8
+  asset      n_days mean_return_d volatility_d volatility_ann worst_day best_day
+  <fct>       <int>         <dbl>        <dbl>          <dbl>     <dbl>    <dbl>
+1 NVIDIA (N~   5283      0.00178        0.0307          0.487    -0.307    0.298
+2 Intel (IN~   5283      0.000434       0.0220          0.349    -0.261    0.228
+3 Nasdaq Co~   5283      0.000544       0.0137          0.217    -0.123    0.122
+# i 1 more variable: kurtosis <dbl>
+# A tibble: 15 x 3
+# Groups:   asset [3]
+   asset            month      vol_month
+   <fct>            <date>         <dbl>
+ 1 NVIDIA (NVDA)    2020-03-01    0.0815
+ 2 NVIDIA (NVDA)    2008-10-01    0.0781
+ 3 NVIDIA (NVDA)    2008-11-01    0.0730
+ 4 NVIDIA (NVDA)    2016-11-01    0.0699
+ 5 NVIDIA (NVDA)    2008-07-01    0.0687
+ 6 Intel (INTC)     2020-03-01    0.0842
+ 7 Intel (INTC)     2024-08-01    0.0703
+ 8 Intel (INTC)     2025-04-01    0.0612
+ 9 Intel (INTC)     2025-09-01    0.0577
+10 Intel (INTC)     2008-10-01    0.0543
+11 Nasdaq Composite 2020-03-01    0.0573
+12 Nasdaq Composite 2008-10-01    0.0486
+13 Nasdaq Composite 2008-11-01    0.0425
+14 Nasdaq Composite 2025-04-01    0.0378
+15 Nasdaq Composite 2008-09-01    0.0334
+# A tibble: 9 x 3
+# Groups:   asset [3]
+  asset            month      vol_month
+  <fct>            <date>         <dbl>
+1 NVIDIA (NVDA)    2013-07-01   0.00796
+2 NVIDIA (NVDA)    2013-03-01   0.00823
+3 NVIDIA (NVDA)    2013-09-01   0.00845
+4 Intel (INTC)     2016-08-01   0.00629
+5 Intel (INTC)     2014-05-01   0.00687
+6 Intel (INTC)     2017-03-01   0.00718
+7 Nasdaq Composite 2017-02-01   0.00349
+8 Nasdaq Composite 2014-11-01   0.00373
+9 Nasdaq Composite 2014-06-01   0.00404
+pdf 
+  2 
+# A tibble: 3 x 6
+  asset            sq_lag1 sq_lag5 sq_lag20 sq_lag50 raw_lag1
+  <chr>              <dbl>   <dbl>    <dbl>    <dbl>    <dbl>
+1 NVIDIA (NVDA)     0.0851  0.0757   0.0627   0.0315  -0.0427
+2 Intel (INTC)      0.208   0.0931   0.101    0.0354  -0.0780
+3 Nasdaq Composite  0.306   0.264    0.140    0.0403  -0.0985
+# A tibble: 3 x 7
+  asset             var_95   es_95  var_99   es_99 var_95_usd es_95_usd
+  <fct>              <dbl>   <dbl>   <dbl>   <dbl>      <dbl>     <dbl>
+1 NVIDIA (NVDA)    -0.0447 -0.0671 -0.0775 -0.107      44684.    67107.
+2 Intel (INTC)     -0.0314 -0.0501 -0.0607 -0.0866     31425.    50135.
+3 Nasdaq Composite -0.0218 -0.0329 -0.0390 -0.0525     21775.    32891.
+# A tibble: 3 x 3
+  asset            var_95_recent es_95_recent
+  <fct>                    <dbl>        <dbl>
+1 NVIDIA (NVDA)          -0.0468      -0.0698
+2 Intel (INTC)           -0.0527      -0.0782
+3 Nasdaq Composite       -0.0219      -0.0311
+# A tibble: 3 x 3
+  asset            max_drawdown date_of_max
+  <fct>                   <dbl> <date>     
+1 NVIDIA (NVDA)          -0.851 2008-11-20 
+2 Intel (INTC)           -0.708 2025-04-08 
+3 Nasdaq Composite       -0.556 2009-03-09 
+# A tibble: 3 x 6
+  asset            start_price end_price years total_growth cagr_nominal
+  <fct>                  <dbl>     <dbl> <dbl>        <dbl>        <dbl>
+1 NVIDIA (NVDA)          0.180     186.   21.0      1035.         0.392 
+2 Intel (INTC)          13.3        36.9  21.0         2.77       0.0497
+3 Nasdaq Composite    2152.      23242.   21.0        10.8        0.120 
+[1] 0.02574278
+[1] 0.7016232
+# A tibble: 3 x 10
+  asset     start_price end_price years total_growth cagr_nominal inflation_cagr
+  <fct>           <dbl>     <dbl> <dbl>        <dbl>        <dbl>          <dbl>
+1 NVIDIA (~       0.180     186.   21.0      1035.         0.392          0.0257
+2 Intel (I~      13.3        36.9  21.0         2.77       0.0497         0.0257
+3 Nasdaq C~    2152.      23242.   21.0        10.8        0.120          0.0257
+# i 3 more variables: cagr_real <dbl>, value_nominal <dbl>, value_real <dbl>
+# A tibble: 4 x 2
+  measure                              value
+  <chr>                                <dbl>
+1 INTC total return CAGR (adjusted)  0.0497 
+2 INTC price-only CAGR (close)       0.0226 
+3 INTC price-only CAGR, real        -0.00304
+4 Inflation CAGR                     0.0257 
+Warning message:
+x = 'TB3MS', get = 'economic.data': Error in getSymbols.FRED(Symbols = "TB3MS", env = <environment>, verbose = FALSE, : Unable to import "TB3MS".
+Stream error in the HTTP/2 framing layer [fred.stlouisfed.org]:
+HTTP/2 stream 3 was not closed cleanly: INTERNAL_ERROR (err 2)
+getSymbols.FRED: requests without an API key are not guaranteed to succeed.
+Register for a free key at https://fredaccount.stlouisfed.org/apikeys and set it with
+setDefaults(getSymbols.FRED, api.key = "your key").
+ 
+[1] 0.01711468
+# A tibble: 3 x 6
+  asset            return_ann volatility_ann sharpe downside_dev sortino
+  <fct>                 <dbl>          <dbl>  <dbl>        <dbl>   <dbl>
+1 NVIDIA (NVDA)        0.444           0.471  0.905        0.266   1.60 
+2 Intel (INTC)         0.0948          0.304  0.256        0.204   0.380
+3 Nasdaq Composite     0.130           0.177  0.634        0.116   0.969
+         nvda      intc       ndx
+nvda 1.000000 0.3717290 0.6448810
+intc 0.371729 1.0000000 0.5356208
+ndx  0.644881 0.5356208 1.0000000
+# A tibble: 2 x 3
+  asset         correlation_ndx beta_ndx
+  <chr>                   <dbl>    <dbl>
+1 NVIDIA (NVDA)           0.645    1.68 
+2 Intel (INTC)            0.536    0.920
+# A tibble: 3 x 11
+  asset      return_ann volatility_ann  var_95   es_95 max_drawdown cagr_nominal
+  <fct>           <dbl>          <dbl>   <dbl>   <dbl>        <dbl>        <dbl>
+1 NVIDIA (N~     0.331           0.463 -0.0447 -0.0671       -0.851       0.392 
+2 Intel (IN~     0.0485          0.306 -0.0314 -0.0501       -0.708       0.0497
+3 Nasdaq Co~     0.113           0.178 -0.0218 -0.0329       -0.556       0.120 
+# i 4 more variables: cagr_real <dbl>, value_real <dbl>, sharpe <dbl>,
+#   sortino <dbl>
+             Asset Return p.a. % Volatility % VaR 95% (daily) %
+1    NVIDIA (NVDA)          33.1         46.3             -4.47
+2     Intel (INTC)           4.8         30.6             -3.14
+3 Nasdaq Composite          11.3         17.8             -2.18
+  ES 95% (daily) % Max drawdown % CAGR nominal % CAGR real % 10k -> real USD
+1            -6.71          -85.1          39.20       35.70         6083619
+2            -5.01          -70.8           4.97        2.33           16262
+3            -3.29          -55.6          12.00        9.19           63465
+  Sharpe Sortino
+1   0.90    1.60
+2   0.26    0.38
+3   0.63    0.97

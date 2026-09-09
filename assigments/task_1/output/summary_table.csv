@@ -1,0 +1,4 @@
+Asset,Return p.a. %,Volatility %,VaR 95% (daily) %,ES 95% (daily) %,Max drawdown %,CAGR nominal %,CAGR real %,10k -> real USD,Sharpe,Sortino
+NVIDIA (NVDA),33.1,46.3,-4.47,-6.71,-85.1,39.2,35.7,6083619,0.9,1.6
+Intel (INTC),4.8,30.6,-3.14,-5.01,-70.8,4.97,2.33,16262,0.26,0.38
+Nasdaq Composite,11.3,17.8,-2.18,-3.29,-55.6,12,9.19,63465,0.63,0.97

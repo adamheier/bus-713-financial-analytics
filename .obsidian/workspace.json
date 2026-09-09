@@ -11,28 +11,17 @@
             "id": "db4b89fb0125e964",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "BUS 713 Assessment 1.pdf"
+                "file": "assigments/task_1/01_video_presentation.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "BUS 713 Assessment 1"
-            }
-          },
-          {
-            "id": "4f9c67c55529877b",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "assigments/task_1/BUS 713 Assessment 1.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "BUS 713 Assessment 1"
+              "icon": "lucide-file",
+              "title": "01_video_presentation"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -207,19 +196,34 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "1fb117d45e3d9bf1",
+  "active": "db4b89fb0125e964",
   "lastOpenFiles": [
-    "modules/module_1/Module 1 Introduction_ Financial Analytics.pdf",
-    "modules/module_1/Apple_Microsoft.r",
-    "modules/module_1/1.5 Compound Annual Growth Rate and Application Programming Interface_ Financial Analytics.pdf",
-    "modules/module_1/1.4 Analysing Stock Prices in R_ Financial Analytics.pdf",
-    "modules/module_1/1.3 R Essentials_ Financial Analytics.pdf",
-    "modules/module_1/1.2 The R Programming Language_ Financial Analytics.pdf",
-    "modules/module_1/1.1 The Central Role of Time in Financial Analytics_ Financial Analytics.pdf",
-    "modules/module_2/Workshop_Mod2.pdf",
-    "modules/module_2",
-    "modules/module_1/calculating_returns.r",
-    "modules/module_1/log_returns.r",
+    "Untitled.md",
+    "Backup.md",
+    "assigments/task_1/01_video_presentation.md",
+    "assigments/task_1/02_r_script.md",
+    "assigments/task_1/output/01_prices_levels.png",
+    "assigments/task_1/Rplots.pdf",
+    "assigments/task_1/output/02_prices_indexed_log.png",
+    "assigments/task_1/BUS 713 Assessment 1.pdf",
+    "modules/module_2/stationary series.R",
+    "modules/module_2/Apple_Microsoft.R",
+    "modules/stationary series.R",
+    "modules/Apple_Microsoft.R",
+    "stationary series.R",
+    "Apple_Microsoft.R",
+    "assigments/task_1/output/run_log.txt",
+    "assigments/task_1/output/summary_table.csv",
+    "assigments/task_1/output/13_value_of_investment.png",
+    "assigments/task_1/output/12_cagr_nominal_vs_real.png",
+    "assigments/task_1/output/11_drawdown.png",
+    "assigments/task_1/output/10_var_es_comparison.png",
+    "assigments/task_1/output/09_var_histograms.png",
+    "assigments/task_1/output/08_acf_squared_returns.png",
+    "assigments/task_1/output/07_rolling_volatility_30d.png",
+    "assigments/task_1/output/06_monthly_realised_volatility.png",
+    "assigments/task_1/03_executive_summary.md",
+    "assigments/task_1/00_analyse_ergebnisse.md",
     "bla.md"
   ]
 }

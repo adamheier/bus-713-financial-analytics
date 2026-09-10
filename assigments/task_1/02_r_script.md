@@ -139,23 +139,26 @@ reproducible" aus der Aufgabenstellung.
 
 ## Erzeugte Ausgaben
 
+Elf Grafiken, lückenlos durchnummeriert in der Reihenfolge, in der das Skript sie erzeugt.
+
 | Datei | Inhalt | Verwendet für |
 |---|---|---|
 | `01_prices_levels.png` | Bereinigte Kurse: NVDA und INTC auf gemeinsamer 0–200-USD-Skala, Nasdaq daneben mit eigener | Kontext |
-| `02_prices_indexed_log.png` | Wachstum von 100 USD, Log-Skala | **Part B1 im Video** |
+| `02_prices_indexed_log.png` | Wachstum von 100 USD, Log-Skala | **Kernaussage 1** |
 | `03_monthly_returns.png` | Monatliche Log-Renditen | Renditeverlauf |
 | `04_daily_returns.png` | Tagesrenditen, Clustering sichtbar | Clustering visuell |
-| `05_return_vs_volatility.png` | Rendite gegen Volatilität, annualisiert | **Part B2 im Video** |
-| `06_monthly_realised_volatility.png` | Realisierte Volatilität je Monat | Clustering gemessen |
-| `07_rolling_volatility_30d.png` | 30-Tage-Rollvolatilität, annualisiert | **Part B3 im Video** |
-| `08_acf_squared_returns.png` | ACF der quadrierten Renditen, 50 Lags | Clustering statistisch |
-| `09_var_histograms.png` | Renditeverteilung mit VaR- und ES-Linie | VaR erklären |
-| `10_var_es_comparison.png` | VaR und ES im Direktvergleich | Downside Risk |
-| `11_drawdown.png` | Drawdown vom laufenden Höchststand | Empfehlung |
-| `12_cagr_nominal_vs_real.png` | CAGR nominal vs. real, mit Inflationslinie | **Part B4 im Video** |
-| `13_value_of_investment.png` | Endwert von 10.000 USD, nominal vs. real | Inflation in Geld |
-| `summary_table.csv` | Alle Kennzahlen in einer Tabelle | Report, Schlussbild |
+| `05_return_vs_volatility.png` | Rendite gegen Volatilität, annualisiert | **Kernaussage 2** |
+| `06_monthly_realised_volatility.png` | Realisierte Volatilität je Monat | Volatilität über die Zeit, ruhige und turbulente Phasen |
+| `07_acf_squared_returns.png` | ACF der quadrierten Renditen, 50 Lags | Clustering statistisch |
+| `08_var_histograms.png` | Renditeverteilung mit VaR- und ES-Linie | VaR erklären |
+| `09_var_es_comparison.png` | VaR und ES im Direktvergleich | Downside Risk |
+| `10_cagr_nominal_vs_real.png` | CAGR nominal vs. real, mit Inflationslinie | **Kernaussage 3** |
+| `11_value_of_investment.png` | Endwert von 10.000 USD, nominal vs. real | Inflation in Geld |
 | `run_log.txt` | Vollständige Konsolenausgabe des Laufs | Nachvollziehbarkeit |
+
+Nicht mehr enthalten: die 30-Tage-Rollvolatilität und der Drawdown-Chart wurden aus dem Skript
+entfernt. `summary_table.csv` wird nur geschrieben, wenn die `write.csv()`-Zeile in Abschnitt 9
+wieder aktiviert wird.
 
 ---
 

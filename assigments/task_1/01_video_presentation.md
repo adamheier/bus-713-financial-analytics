@@ -30,8 +30,8 @@
 | 4:00–4:35 | **Part A6** CAGR, Inflation, Ergebnistabelle | Skript Abschnitt 7, kurz 8 und 9 |
 | 4:35–5:30 | **Part B1** Befund 1: Rendite und Streuung | `02_prices_indexed_log.png` |
 | 5:30–6:20 | **Part B2** Befund 2: Risiko wird nicht immer bezahlt | `05_return_vs_volatility.png` |
-| 6:20–7:10 | **Part B3** Befund 3: Risiko ist zeitvariabel | `07_rolling_volatility_30d.png` |
-| 7:10–7:55 | **Part B4** Befund 4: Inflation | `12_cagr_nominal_vs_real.png` |
+| 6:20–7:10 | **Part B3** Befund 3: Risiko ist zeitvariabel | `06_monthly_realised_volatility.png` |
+| 7:10–7:55 | **Part B4** Befund 4: Inflation | `10_cagr_nominal_vs_real.png` |
 | 7:55–8:55 | Empfehlung, Limitationen, Schluss | `summary_table.csv` oder Kamera |
 
 Part A und Part B sind damit etwa gleich lang (je ca. 4 Minuten). Die Aufgabenstellung gewichtet
@@ -178,7 +178,7 @@ Das ist genau der Unterschied zwischen **Richtungsvorhersage** (nicht möglich, 
 > Same sector, same twenty-one years, and the gap in the final value is a factor of three hundred
 > and seventy.
 
-### 6:20–7:10 — Part B3: Befund 3 *(`07_rolling_volatility_30d.png`)*
+### 6:20–7:10 — Part B3: Befund 3 *(`06_monthly_realised_volatility.png`)*
 
 > Second finding: risk is not a constant, and this chart is the evidence. Rolling volatility moves
 > in waves. In the calm years 2013 and 2014 the Nasdaq ran at thirteen percent; in the Covid crash
@@ -190,7 +190,7 @@ Das ist genau der Unterschied zwischen **Richtungsvorhersage** (nicht möglich, 
 > percent; over the last two years alone it's minus five point three — **worse than NVIDIA's**. A
 > risk limit built on the long-run average would be far too small for the position we hold today.
 
-### 7:10–7:55 — Part B4: Befund 4 *(`12_cagr_nominal_vs_real.png`)*
+### 7:10–7:55 — Part B4: Befund 4 *(`10_cagr_nominal_vs_real.png`)*
 
 > Third finding, and the one I'd put in front of the board: inflation. US consumer prices rose two
 > point five seven percent a year — seventy percent in total. That quietly removes **forty-one
@@ -209,8 +209,8 @@ Das ist genau der Unterschied zwischen **Richtungsvorhersage** (nicht möglich, 
 > For a normal client, the index stays the core of the portfolio. It delivered the best real return
 > per unit of risk of any *predictable* choice: nine point two percent real, at eighteen percent
 > volatility, with none of the single-company risk. Individual stocks belong in a satellite
-> position, sized so that a drawdown of sixty to eighty-five percent is survivable — because that
-> is what actually happened.
+> position, sized so that a deep drawdown is survivable — because that is what actually happened:
+> NVIDIA lost eighty-five percent in 2008, Intel seventy-one percent through 2025.
 >
 > Two limitations I want to be honest about. I picked NVIDIA knowing how the story ended, so this
 > is not evidence that stock-picking works — it's evidence of what it costs when it doesn't. And
@@ -248,4 +248,3 @@ kurz Pause machen.
 **Wenn Zeit übrig ist** (unter 7:00), ergänzen:
 - Die Fat-Tail-Zahl: *"Intel's worst day was minus twenty-six percent. Under a normal distribution
   that is a once-in-the-history-of-the-universe event. It happened in August 2024."*
-- Der Drawdown-Chart `11_drawdown.png` als zusätzlicher Beleg zur Empfehlung.

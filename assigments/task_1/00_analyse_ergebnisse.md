@@ -107,7 +107,7 @@ KI-Zyklus) und wird vom Markt nicht mit Rendite entlohnt.
 ## 5. Risiko II: Volatilitätsclustering
 
 **Abbildungen:** `04_daily_returns.png`, `06_monthly_realised_volatility.png`,
-`07_rolling_volatility_30d.png`, `08_acf_squared_returns.png`.
+`06_monthly_realised_volatility.png`, `07_acf_squared_returns.png`.
 
 Die 30-Tage-Rollvolatilität (annualisiert) über typische Regime:
 
@@ -149,7 +149,10 @@ was der 21-Jahres-Durchschnitt sagt.
 
 ## 6. Risiko III: Downside Risk (VaR, ES, Drawdown)
 
-**Abbildungen:** `09_var_histograms.png`, `10_var_es_comparison.png`, `11_drawdown.png`.
+**Abbildungen:** `08_var_histograms.png`, `09_var_es_comparison.png`.
+
+> Die Drawdown-Zahlen unten stammen aus einer früheren Skriptfassung; der Drawdown wird im
+> abgegebenen Skript nicht mehr berechnet.
 
 Historischer 95-%-Tages-VaR und Expected Shortfall, umgerechnet auf eine 1-Mio.-USD-Position:
 
@@ -184,7 +187,7 @@ Vier Interpretationspunkte:
 
 ## 7. Langfristige Performance: nominal vs. real
 
-**Abbildungen:** `12_cagr_nominal_vs_real.png`, `13_value_of_investment.png`.
+**Abbildungen:** `10_cagr_nominal_vs_real.png`, `11_value_of_investment.png`.
 
 Fisher-Gleichung: `(1 + r_real) = (1 + r_nominal) / (1 + Inflation)`, Inflation = CPI-CAGR 2,574 %.
 

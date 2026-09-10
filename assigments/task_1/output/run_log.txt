@@ -99,13 +99,6 @@ setDefaults(getSymbols.FRED, api.key = "your key").
 2 Intel (INT~      252       0.00404       0.0882          0.0485          0.306
 3 Nasdaq Com~      252       0.00944       0.0514          0.113           0.178
 # i 3 more variables: worst_month <dbl>, best_month <dbl>, share_positive <dbl>
-# A tibble: 3 x 8
-  asset      n_days mean_return_d volatility_d volatility_ann worst_day best_day
-  <fct>       <int>         <dbl>        <dbl>          <dbl>     <dbl>    <dbl>
-1 NVIDIA (N~   5283      0.00178        0.0307          0.487    -0.307    0.298
-2 Intel (IN~   5283      0.000434       0.0220          0.349    -0.261    0.228
-3 Nasdaq Co~   5283      0.000544       0.0137          0.217    -0.123    0.122
-# i 1 more variable: kurtosis <dbl>
 # A tibble: 15 x 3
 # Groups:   asset [3]
    asset            month      vol_month
@@ -150,7 +143,7 @@ pdf
   asset             var_95   es_95  var_99   es_99 var_95_usd es_95_usd
   <fct>              <dbl>   <dbl>   <dbl>   <dbl>      <dbl>     <dbl>
 1 NVIDIA (NVDA)    -0.0447 -0.0671 -0.0775 -0.107      44684.    67107.
-2 Intel (INTC)     -0.0314 -0.0501 -0.0607 -0.0866     31425.    50135.
+2 Intel (INTC)     -0.0314 -0.0501 -0.0607 -0.0866     31424.    50135.
 3 Nasdaq Composite -0.0218 -0.0329 -0.0390 -0.0525     21775.    32891.
 # A tibble: 3 x 3
   asset            var_95_recent es_95_recent
@@ -158,12 +151,6 @@ pdf
 1 NVIDIA (NVDA)          -0.0468      -0.0698
 2 Intel (INTC)           -0.0527      -0.0782
 3 Nasdaq Composite       -0.0219      -0.0311
-# A tibble: 3 x 3
-  asset            max_drawdown date_of_max
-  <fct>                   <dbl> <date>     
-1 NVIDIA (NVDA)          -0.851 2008-11-20 
-2 Intel (INTC)           -0.708 2025-04-08 
-3 Nasdaq Composite       -0.556 2009-03-09 
 # A tibble: 3 x 6
   asset            start_price end_price years total_growth cagr_nominal
   <fct>                  <dbl>     <dbl> <dbl>        <dbl>        <dbl>
@@ -179,13 +166,6 @@ pdf
 2 Intel (I~      13.3        36.9  21.0         2.77       0.0497         0.0257
 3 Nasdaq C~    2152.      23242.   21.0        10.8        0.120          0.0257
 # i 3 more variables: cagr_real <dbl>, value_nominal <dbl>, value_real <dbl>
-# A tibble: 4 x 2
-  measure                              value
-  <chr>                                <dbl>
-1 INTC total return CAGR (adjusted)  0.0497 
-2 INTC price-only CAGR (close)       0.0226 
-3 INTC price-only CAGR, real        -0.00304
-4 Inflation CAGR                     0.0257 
 Warning message:
 x = 'TB3MS', get = 'economic.data': Error in getSymbols.FRED(Symbols = "TB3MS", env = <environment>, verbose = FALSE, : Unable to import "TB3MS".
 Stream error in the HTTP/2 framing layer [fred.stlouisfed.org]:
@@ -201,32 +181,18 @@ setDefaults(getSymbols.FRED, api.key = "your key").
 1 NVIDIA (NVDA)        0.444           0.471  0.905        0.266   1.60 
 2 Intel (INTC)         0.0948          0.304  0.256        0.204   0.380
 3 Nasdaq Composite     0.130           0.177  0.634        0.116   0.969
-         nvda      intc       ndx
-nvda 1.000000 0.3717290 0.6448810
-intc 0.371729 1.0000000 0.5356208
-ndx  0.644881 0.5356208 1.0000000
-# A tibble: 2 x 3
-  asset         correlation_ndx beta_ndx
-  <chr>                   <dbl>    <dbl>
-1 NVIDIA (NVDA)           0.645    1.68 
-2 Intel (INTC)            0.536    0.920
-# A tibble: 3 x 11
-  asset      return_ann volatility_ann  var_95   es_95 max_drawdown cagr_nominal
-  <fct>           <dbl>          <dbl>   <dbl>   <dbl>        <dbl>        <dbl>
-1 NVIDIA (N~     0.331           0.463 -0.0447 -0.0671       -0.851       0.392 
-2 Intel (IN~     0.0485          0.306 -0.0314 -0.0501       -0.708       0.0497
-3 Nasdaq Co~     0.113           0.178 -0.0218 -0.0329       -0.556       0.120 
-# i 4 more variables: cagr_real <dbl>, value_real <dbl>, sharpe <dbl>,
-#   sortino <dbl>
+# A tibble: 3 x 10
+  asset         return_ann volatility_ann  var_95   es_95 cagr_nominal cagr_real
+  <fct>              <dbl>          <dbl>   <dbl>   <dbl>        <dbl>     <dbl>
+1 NVIDIA (NVDA)     0.331           0.463 -0.0447 -0.0671       0.392     0.357 
+2 Intel (INTC)      0.0485          0.306 -0.0314 -0.0501       0.0497    0.0233
+3 Nasdaq Compo~     0.113           0.178 -0.0218 -0.0329       0.120     0.0919
+# i 3 more variables: value_real <dbl>, sharpe <dbl>, sortino <dbl>
              Asset Return p.a. % Volatility % VaR 95% (daily) %
 1    NVIDIA (NVDA)          33.1         46.3             -4.47
 2     Intel (INTC)           4.8         30.6             -3.14
 3 Nasdaq Composite          11.3         17.8             -2.18
-  ES 95% (daily) % Max drawdown % CAGR nominal % CAGR real % 10k -> real USD
-1            -6.71          -85.1          39.20       35.70         6083619
-2            -5.01          -70.8           4.97        2.33           16262
-3            -3.29          -55.6          12.00        9.19           63465
-  Sharpe Sortino
-1   0.90    1.60
-2   0.26    0.38
-3   0.63    0.97
+  ES 95% (daily) % CAGR nominal % CAGR real % 10k -> real USD Sharpe Sortino
+1            -6.71          39.20       35.70         6083619   0.90    1.60
+2            -5.01           4.97        2.33           16262   0.26    0.38
+3            -3.29          12.00        9.19           63465   0.63    0.97

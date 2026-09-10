@@ -1,37 +1,24 @@
-# =============================================================================
-# BUS 713 Financial Analytics - Assessment 1
-# Financial Data Analysis & Insight Report
-#
-# Research question: Do individual large-cap technology stocks offer a better
-#                    opportunity than tracking the broader market?
-#
 # Assets:  NVIDIA (NVDA), Intel (INTC), Nasdaq Composite (^IXIC)
 # Period:  1 January 2005 - 31 December 2025
 # Data:    Yahoo Finance (prices, adjusted for splits and dividends)
 #          FRED (US CPI, series CPIAUCSL)
 #
-# Structure of this script
+# Structure of this code
 #   0. Setup and parameters
 #   1. Data import (prices and CPI)
 #   2. Prices over time
 #   3. Returns (monthly and daily)
 #   4. Risk 1: volatility as dispersion of returns
 #   5. Risk 2: volatility over time and volatility clustering
-#   6. Risk 3: downside risk (VaR, Expected Shortfall, drawdown)
+#   6. Risk 3: downside risk (VaR, Expected Shortfall)
 #   7. Long-run performance: nominal CAGR, inflation and real CAGR
 #   8. Risk-adjusted performance (Sharpe, Sortino, beta)
 #   9. Final summary table
-#
-# The script is fully reproducible: it downloads all data from the internet,
-# writes every figure into ./output/ and needs no manual file handling.
-# =============================================================================
 
 
 # -----------------------------------------------------------------------------
 # 0. Setup and parameters
 # -----------------------------------------------------------------------------
-
-# install.packages(c("tidyquant", "tidyverse", "forecast", "patchwork"))  # run once
 
 library(tidyquant)   # tq_get() for prices, tq_transmute() for returns
 library(tidyverse)   # dplyr / ggplot2 / tibble
@@ -39,8 +26,7 @@ library(lubridate)   # floor_date() for grouping days into months
 library(forecast)    # Acf() for the autocorrelation function
 library(patchwork)   # combines two ggplots into one figure (p_a + p_b)
 
-# Central parameters. Everything downstream refers to these objects, so the
-# whole analysis can be repeated for other stocks by changing one line.
+# Central parameters.
 start_date <- "2005-01-01"
 end_date   <- "2025-12-31"
 
@@ -254,21 +240,6 @@ risk_summary <- monthly_returns %>%
 
 risk_summary
 
-# Same statistics on daily data, including excess kurtosis as a first indication
-# of fat tails (a normal distribution has a kurtosis of 3).
-daily_summary <- daily_returns %>%
-  group_by(asset) %>%
-  summarise(
-    n_days         = n(),
-    mean_return_d  = mean(daily.returns),
-    volatility_d   = sd(daily.returns),
-    volatility_ann = sd(daily.returns) * sqrt(252),
-    worst_day      = min(daily.returns),
-    best_day       = max(daily.returns),
-    kurtosis       = mean((daily.returns - mean(daily.returns))^4) / sd(daily.returns)^4
-  )
-
-daily_summary
 
 # Bar chart: annualised return against annualised volatility
 p_risk <- risk_summary %>%
@@ -291,8 +262,6 @@ ggsave(file.path(out_dir, "05_return_vs_volatility.png"), p_risk, width = 8, hei
 # -----------------------------------------------------------------------------
 # 5. Risk 2: volatility over time and volatility clustering
 # -----------------------------------------------------------------------------
-# Volatility is not a constant. This section shows that it moves in waves and
-# that turbulence is persistent - the defining feature of financial risk.
 
 # 5.1 Monthly realised volatility: standard deviation of daily returns inside
 # each calendar month.
@@ -319,13 +288,11 @@ ggsave(file.path(out_dir, "06_monthly_realised_volatility.png"), p_mvol, width =
 monthly_vol %>% group_by(asset) %>% slice_max(vol_month, n = 5) %>% arrange(asset, desc(vol_month))
 monthly_vol %>% group_by(asset) %>% slice_min(vol_month, n = 3) %>% arrange(asset, vol_month)
 
-
-
 # 5.2 Squared returns as a volatility proxy.
 daily_returns <- daily_returns %>%
   mutate(sq_return = daily.returns^2)
 
-# 5.3 Autocorrelation of squared returns.
+# 5.3 Autocorrelation of squared returns. Important for acf_table
 plot_acf_grid <- function() {
   par(mfrow = c(1, 3))
   for (a in asset_levels) {
@@ -337,13 +304,12 @@ plot_acf_grid <- function() {
   
 plot_acf_grid()
 
-png(file.path(out_dir, "08_acf_squared_returns.png"), width = 1200, height = 400, res = 120)
+png(file.path(out_dir, "07_acf_squared_returns.png"), width = 1200, height = 400, res = 120)
 plot_acf_grid()
 dev.off()
   
 
-# Numerical version of the same evidence: autocorrelation of squared returns
-# against autocorrelation of the returns themselves.
+# Numerical version of the same evidence
 acf_table <- map_dfr(asset_levels, function(a) {
   r  <- daily_returns %>% filter(asset == a) %>% pull(daily.returns)
   ac_sq  <- acf(r^2, lag.max = 50, plot = FALSE)$acf[, , 1]
@@ -359,10 +325,8 @@ acf_table <- map_dfr(asset_levels, function(a) {
 acf_table
 
 # -----------------------------------------------------------------------------
-# 6. Risk 3: downside risk (VaR, Expected Shortfall, drawdown)
+# 6. Risk 3: downside risk (VaR, Expected Shortfall)
 # -----------------------------------------------------------------------------
-# Volatility treats gains and losses symmetrically. VaR and ES look only at the
-# left tail: how bad can a bad day get?
 
 # 6.1 Historical VaR and ES at the 95% and 99% level.
 # VaR  = the 5th (1st) percentile of the daily return distribution.
@@ -402,7 +366,7 @@ p_var <- ggplot(daily_returns, aes(x = daily.returns)) +
   theme_bw()
 
 p_var
-ggsave(file.path(out_dir, "09_var_histograms.png"), p_var, width = 9, height = 7, dpi = 150)
+ggsave(file.path(out_dir, "08_var_histograms.png"), p_var, width = 9, height = 7, dpi = 150)
 
 # 6.3 VaR and ES side by side
 p_varbar <- var_es %>%
@@ -420,11 +384,10 @@ p_varbar <- var_es %>%
   theme_bw()
 
 p_varbar
-ggsave(file.path(out_dir, "10_var_es_comparison.png"), p_varbar, width = 8, height = 5, dpi = 150)
+ggsave(file.path(out_dir, "09_var_es_comparison.png"), p_varbar, width = 8, height = 5, dpi = 150)
 
-# 6.4 Is the full-sample VaR still the right number today?
-# The same calculation on the last two years only shows how much a historical
-# risk estimate depends on the window chosen.
+# 6.4 Is the full-sample VaR still the right number today? --> vllt rauslassen?
+
 var_recent <- daily_returns %>%
   filter(date >= as.Date("2024-01-01")) %>%
   group_by(asset) %>%
@@ -436,48 +399,11 @@ var_recent <- daily_returns %>%
 
 var_recent
 
-# 6.5 Maximum drawdown: the deepest peak-to-trough loss an investor had to sit
-# through. VaR is a one-day measure, drawdown is the multi-year experience.
-drawdown <- prices %>%
-  group_by(asset) %>%
-  arrange(date) %>%
-  mutate(
-    running_peak = cummax(adjusted),
-    drawdown     = adjusted / running_peak - 1
-  ) %>%
-  ungroup()
-
-drawdown_summary <- drawdown %>%
-  group_by(asset) %>%
-  summarise(
-    max_drawdown = min(drawdown),
-    date_of_max  = date[which.min(drawdown)],
-    .groups = "drop"
-  )
-
-drawdown_summary
-
-p_dd <- ggplot(drawdown, aes(x = date, y = drawdown, colour = asset)) +
-  geom_line(linewidth = 0.4) +
-  facet_wrap(~ asset, ncol = 1) +
-  scale_y_continuous(labels = scales::percent) +
-  labs(
-    title    = "Drawdown from the running maximum",
-    subtitle = "How far below its own previous peak was the investment at each point in time?",
-    x = "", y = "Drawdown"
-  ) +
-  theme_bw() +
-  theme(legend.position = "none")
-
-p_dd
-ggsave(file.path(out_dir, "11_drawdown.png"), p_dd, width = 9, height = 6, dpi = 150)
-
-
 # -----------------------------------------------------------------------------
 # 7. Long-run performance: nominal CAGR, inflation and real CAGR
 # -----------------------------------------------------------------------------
 
-# 7.1 Nominal CAGR from the adjusted price series (Module 1.5 method).
+# 7.1 Nominal CAGR from the adjusted price series.
 cagr_table <- prices %>%
   group_by(asset) %>%
   summarise(
@@ -499,7 +425,7 @@ cpi_cagr        # average annual inflation rate 2005-2025
 cpi_cumulative  # cumulative price increase over the whole period
 
 # 7.3 Real CAGR via the Fisher equation:
-#     (1 + r_real) = (1 + r_nominal) / (1 + inflation)
+#     (1 + r_real) = (1 + r_nominal) / (1 + inflation) 
 # Subtracting inflation would overstate the real return, because both rates
 # compound.
 cagr_table <- cagr_table %>%
@@ -508,7 +434,7 @@ cagr_table <- cagr_table %>%
     cagr_real      = (1 + cagr_nominal) / (1 + cpi_cagr) - 1,
     # what 10,000 USD invested at the start of 2005 turned into
     value_nominal  = invested * total_growth,
-    # ... and what that amount is worth in 2005 purchasing power
+    # and what that amount is worth in 2005 purchasing power
     value_real     = invested * total_growth / (1 + cpi_cumulative)
   )
 
@@ -534,50 +460,30 @@ p_cagr <- cagr_table %>%
   theme_bw()
 
 p_cagr
-ggsave(file.path(out_dir, "12_cagr_nominal_vs_real.png"), p_cagr, width = 8, height = 5, dpi = 150)
+ggsave(file.path(out_dir, "10_cagr_nominal_vs_real.png"), p_cagr, width = 8, height = 5, dpi = 150)
 
 # 7.5 The same message in money: nominal wealth versus purchasing power.
 p_value <- cagr_table %>%
-  select(asset, Nominal = value_nominal, `Real (2005 dollars)` = value_real) %>%
+  select(asset, Nominal = value_nominal, `Real` = value_real) %>%
   pivot_longer(-asset, names_to = "type", values_to = "value") %>%
   ggplot(aes(x = asset, y = value, fill = type)) +
   geom_col(position = "dodge") +
   scale_y_log10(labels = scales::dollar) +
   labs(
     title    = paste0("Value of ", scales::dollar(invested), " invested in January 2005 (log scale)"),
-    subtitle = "Inflation removes roughly 41% of the nominal end value",
+    subtitle = "Inflation leaves about 59% of nominal value intact",
     x = "", y = "Value at the end of 2025 (log scale)", fill = ""
   ) +
   theme_bw()
 
 p_value
-ggsave(file.path(out_dir, "13_value_of_investment.png"), p_value, width = 8, height = 5, dpi = 150)
+ggsave(file.path(out_dir, "11_value_of_investment.png"), p_value, width = 8, height = 5, dpi = 150)
 
-# 7.6 Price return versus total return for Intel.
-# "adjusted" includes reinvested dividends. Comparing it with the unadjusted
-# close shows how much of Intel's result came from the dividend rather than
-# from the share price - and how the price alone compares with inflation.
-intc <- prices %>% filter(asset == "Intel (INTC)")
-
-intc_total_return_cagr <- calc_cagr(intc$adjusted, intc$date)  # incl. dividends
-intc_price_only_cagr   <- calc_cagr(intc$close,    intc$date)  # price only
-intc_price_only_real   <- (1 + intc_price_only_cagr) / (1 + cpi_cagr) - 1
-
-tibble(
-  measure = c("INTC total return CAGR (adjusted)",
-              "INTC price-only CAGR (close)",
-              "INTC price-only CAGR, real",
-              "Inflation CAGR"),
-  value   = c(intc_total_return_cagr, intc_price_only_cagr,
-              intc_price_only_real, cpi_cagr)
-)
 
 
 # -----------------------------------------------------------------------------
-# 8. Risk-adjusted performance (Module 3)
+# 8. Risk-adjusted performance
 # -----------------------------------------------------------------------------
-# Return and risk are only meaningful together: how much return was earned per
-# unit of risk taken?
 
 # Risk-free rate: average 3-month US Treasury bill rate over the same period.
 rf_series <- get_fred("TB3MS", start_date, end_date) %>% filter(!is.na(price))
@@ -585,8 +491,7 @@ rf_annual <- mean(rf_series$price) / 100
 
 rf_annual
 
-# Arithmetic monthly returns, because Sharpe and Sortino are defined on
-# simple returns.
+# Arithmetic monthly returns.
 monthly_arith <- prices %>%
   group_by(asset) %>%
   tq_transmute(select = adjusted, mutate_fun = periodReturn,
@@ -608,41 +513,22 @@ performance <- monthly_arith %>%
 
 performance
 
-# Correlation with the index and beta (sensitivity to market moves).
-returns_wide <- monthly_returns %>%
-  pivot_wider(names_from = asset, values_from = monthly.returns) %>%
-  drop_na() %>%
-  rename(nvda = `NVIDIA (NVDA)`, intc = `Intel (INTC)`, ndx = `Nasdaq Composite`)
-
-cor(returns_wide %>% select(-date))
-
-market_sensitivity <- tibble(
-  asset = c("NVIDIA (NVDA)", "Intel (INTC)"),
-  correlation_ndx = c(cor(returns_wide$nvda, returns_wide$ndx),
-                      cor(returns_wide$intc, returns_wide$ndx)),
-  beta_ndx = c(coef(lm(nvda ~ ndx, data = returns_wide))[2],
-               coef(lm(intc ~ ndx, data = returns_wide))[2])
-)
-
-market_sensitivity
-
 
 # -----------------------------------------------------------------------------
 # 9. Final summary table
 # -----------------------------------------------------------------------------
-# One table pulling together return, risk, tail risk and inflation adjustment.
+# Summary table pulling together return, risk, tail risk and inflation adjustment.
 
 summary_table <- risk_summary %>%
   select(asset, return_ann = mean_return_ann, volatility_ann) %>%
   left_join(var_es %>% select(asset, var_95, es_95), by = "asset") %>%
-  left_join(drawdown_summary %>% select(asset, max_drawdown), by = "asset") %>%
   left_join(cagr_table %>% select(asset, cagr_nominal, cagr_real, value_real), by = "asset") %>%
   left_join(performance %>% select(asset, sharpe, sortino), by = "asset") %>%
   arrange(asset)
 
 summary_table
 
-# Rounded version for the presentation and the report
+# Rounded version
 summary_report <- summary_table %>%
   transmute(
     Asset             = asset,
@@ -650,7 +536,6 @@ summary_report <- summary_table %>%
     `Volatility %`    = round(volatility_ann * 100, 1),
     `VaR 95% (daily) %` = round(var_95 * 100, 2),
     `ES 95% (daily) %`  = round(es_95 * 100, 2),
-    `Max drawdown %`  = round(max_drawdown * 100, 1),
     `CAGR nominal %`  = round(cagr_nominal * 100, 2),
     `CAGR real %`     = round(cagr_real * 100, 2),
     `10k -> real USD` = round(value_real, 0),
@@ -660,6 +545,5 @@ summary_report <- summary_table %>%
 
 print(as.data.frame(summary_report))
 
-write_csv(summary_report, file.path(out_dir, "summary_table.csv"))
 
 
